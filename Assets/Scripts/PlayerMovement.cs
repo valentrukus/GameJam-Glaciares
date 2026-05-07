@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Referencias Visuales")]
     [Tooltip("Arrastra aquí el GameObject hijo que contiene el SpriteRenderer")]
     [SerializeField] private Transform characterVisuals;
+    [SerializeField] private Animator animator;
 
     private Rigidbody2D rb;
     private float moveInputX;
@@ -63,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
 
         moveInputX = Input.GetAxisRaw("Horizontal");
         moveInputY = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Movement", moveInputX*maxSpeed);
 
 
         HandleFacingDirection();
