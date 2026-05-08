@@ -22,7 +22,8 @@ public class DialogueManager : MonoBehaviour
     private Action onDialogueCompleteCallback;
     private Coroutine typingCoroutine;
     private bool isTyping;
-
+    private bool autoCloseDialogue;
+    private float autoCloseTime;
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -53,33 +54,80 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void StartDialogue(string[] lines, Action onComplete)
+    //public void StartDialogue(string[] lines, Action onComplete)
+    //{
+    //    if (IsTalking) return;
+    //    dialoguePanel.SetActive(true);
+
+    //    currentLines = lines;
+    //    onDialogueCompleteCallback = onComplete;
+    //    currentLineIndex = 0;
+
+    //    IsTalking = true;
+
+    //    typingCoroutine = StartCoroutine(TypeLine());
+    //}
+
+    public void StartDialogue(string[] lines, Action onComplete, bool autoClose = false, float closeTime = 3f)
     {
         if (IsTalking) return;
+
         dialoguePanel.SetActive(true);
 
         currentLines = lines;
         onDialogueCompleteCallback = onComplete;
         currentLineIndex = 0;
 
+        autoCloseDialogue = autoClose;
+        autoCloseTime = closeTime;
+
         IsTalking = true;
 
         typingCoroutine = StartCoroutine(TypeLine());
     }
 
+    public void EndDialogue()
+    {
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+        }
+
+        isTyping = false;
+        IsTalking = false;
+
+        dialogueText.text = "";
+
+        dialoguePanel.SetActive(false);
+
+        onDialogueCompleteCallback?.Invoke();
+    }
+    //private void NextLine()
+    //{
+    //    currentLineIndex++;
+    //    if (currentLineIndex < currentLines.Length)
+    //    {
+    //        typingCoroutine = StartCoroutine(TypeLine());
+    //    }
+    //    else
+    //    {
+    //        StartCoroutine(EndDialogueRoutine());
+    //        //IsTalking = false;
+    //        //dialoguePanel.SetActive(false);
+    //        //onDialogueCompleteCallback?.Invoke();
+    //    }
+    //}
     private void NextLine()
     {
         currentLineIndex++;
+
         if (currentLineIndex < currentLines.Length)
         {
             typingCoroutine = StartCoroutine(TypeLine());
         }
         else
         {
-            StartCoroutine(EndDialogueRoutine());
-            //IsTalking = false;
-            //dialoguePanel.SetActive(false);
-            //onDialogueCompleteCallback?.Invoke();
+            EndDialogue();
         }
     }
 
@@ -94,6 +142,19 @@ public class DialogueManager : MonoBehaviour
         IsTalking = false;
     }
 
+    //private IEnumerator TypeLine()
+    //{
+    //    isTyping = true;
+    //    dialogueText.text = "";
+
+    //    foreach (char c in currentLines[currentLineIndex].ToCharArray())
+    //    {
+    //        dialogueText.text += c;
+    //        yield return new WaitForSeconds(typingSpeed);
+    //    }
+
+    //    isTyping = false;
+    //}
     private IEnumerator TypeLine()
     {
         isTyping = true;
@@ -106,5 +167,13 @@ public class DialogueManager : MonoBehaviour
         }
 
         isTyping = false;
+
+        // Si el diálogo es automático
+        if (autoCloseDialogue)
+        {
+            yield return new WaitForSeconds(autoCloseTime);
+
+            NextLine();
+        }
     }
 }

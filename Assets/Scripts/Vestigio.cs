@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Vestigio : MonoBehaviour, IInteractable
 {
@@ -9,9 +10,12 @@ public class Vestigio : MonoBehaviour, IInteractable
     //[Header("Configuración Temporal")]
     //[SerializeField] private int targetTimeLayer = 1;
 
-    [Header("Teleport Point")]
-    [Tooltip("Crea un objeto vacío en la otra zona y arrástralo aquí")]
-    [SerializeField] private Transform teleportTarget;
+    //[Header("Teleport Point")]
+    //[Tooltip("Crea un objeto vacío en la otra zona y arrástralo aquí")]
+    //[SerializeField] private Transform teleportTarget;
+
+    [Header("Cambio de Nivel")]
+    [SerializeField] private string sceneToLoad;
 
     [Header("Feedback Visual")]
     [Tooltip("Arrastra aquí el GameObject hijo que tiene el sprite del contorno blanco")]
@@ -35,19 +39,30 @@ public class Vestigio : MonoBehaviour, IInteractable
         DialogueManager.Instance.StartDialogue(dialogueLines, ExecuteTimeJump);
     }
 
+    //private void ExecuteTimeJump()
+    //{
+    //    // Buscamos al jugador por Tag o referencia (Profesional: usar referencia)
+    //    GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+    //    if (teleportTarget != null)
+    //    {
+    //        if (PauseManager.Instance != null) PauseManager.Instance.lastSafeCheckpoint = teleportTarget;
+    //        TimeManager.Instance.TeleportToTime(player.transform, teleportTarget.position);
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("Error: No asignaste un Teleport Target al vestigio.");
+    //    }
+    //}
     private void ExecuteTimeJump()
     {
-        // Buscamos al jugador por Tag o referencia (Profesional: usar referencia)
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        if (teleportTarget != null)
+        if (!string.IsNullOrEmpty(sceneToLoad))
         {
-            if (PauseManager.Instance != null) PauseManager.Instance.lastSafeCheckpoint = teleportTarget;
-            TimeManager.Instance.TeleportToTime(player.transform, teleportTarget.position);
+            SceneManager.LoadScene(sceneToLoad);
         }
         else
         {
-            Debug.LogError("Error: No asignaste un Teleport Target al vestigio.");
+            Debug.LogError("No asignaste el nombre de la escena.");
         }
     }
 }
