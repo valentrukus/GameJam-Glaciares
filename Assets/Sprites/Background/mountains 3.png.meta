@@ -138,94 +138,6 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mountains 3_0
-      rect:
-        serializedVersion: 2
-        x: 2742
-        y: 2270
-        width: 1025
-        height: 245
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8da9c973f0e780b70800000000000000
-      internalID: 8865474470301440728
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountains 3_1
-      rect:
-        serializedVersion: 2
-        x: 3177
-        y: 2500
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cb546a6adfc16b3c0800000000000000
-      internalID: -4344252914804046404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountains 3_2
-      rect:
-        serializedVersion: 2
-        x: 3190
-        y: 2501
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 063941d436ea10c20800000000000000
-      internalID: 3171007354163729248
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountains 3_3
-      rect:
-        serializedVersion: 2
-        x: 3300
-        y: 2501
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cde8c11676b7f08b0800000000000000
-      internalID: -5183788962139042084
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: mountains 3_4
       rect:
         serializedVersion: 2
@@ -234,7 +146,7 @@ TextureImporter:
         width: 7110
         height: 2396
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -251,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 187775a312948e848a0659fe03e923a6
     internalID: 0
     vertices: []
     indices: 
