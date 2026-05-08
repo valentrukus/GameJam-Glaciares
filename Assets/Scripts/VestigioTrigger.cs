@@ -12,6 +12,9 @@ public class VestigioTrigger : MonoBehaviour
 
     [SerializeField] private float dialogueDuration = 4f;
 
+    [Header("Final del Juego")]
+    [SerializeField] private bool closeGameOnDialogueEnd = false;
+
     private bool hasActivated = false;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -23,20 +26,27 @@ public class VestigioTrigger : MonoBehaviour
 
             hasActivated = true;
 
-            //StartCoroutine(ShowDialogueTemporarily());
-            DialogueManager.Instance.StartDialogue(dialogueLines, null, true, 4f);
+            // Mostrar diálogo automático
+            DialogueManager.Instance.StartDialogue(
+                dialogueLines,
+                OnDialogueFinished,
+                true,
+                dialogueDuration
+            );
         }
     }
 
-    private IEnumerator ShowDialogueTemporarily()
+    private void OnDialogueFinished()
     {
-        // Mostrar diálogo
-        DialogueManager.Instance.StartDialogue(dialogueLines, null);
+        if (closeGameOnDialogueEnd)
+        {
+            Debug.Log("Cerrando juego...");
 
-        // Esperar unos segundos
-        yield return new WaitForSeconds(dialogueDuration);
+            Application.Quit();
 
-        // Cerrar diálogo automáticamente
-        DialogueManager.Instance.EndDialogue();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        }
     }
 }

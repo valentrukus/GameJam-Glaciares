@@ -9906,7 +9906,8 @@ MonoBehaviour:
   - "Narrador:Antes de irte, resiste tu sed, y acomp\xE1\xF1ame, para que puedas
     ver lo que perdimos"
   triggerOnlyOnce: 1
-  dialogueDuration: 2
+  dialogueDuration: 4
+  closeGameOnDialogueEnd: 0
 --- !u!1 &1250021646
 GameObject:
   m_ObjectHideFlags: 0
