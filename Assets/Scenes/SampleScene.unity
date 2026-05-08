@@ -1018,7 +1018,7 @@ MonoBehaviour:
   dialogueLines:
   - "\u201CAdvertencia ignorada\u201D  "
   - Narrador:Pocos intentaron advertirlo, muchos fueron los que no escucharon
-  sceneToLoad: 
+  sceneToLoad: Acto 2
   highlightOutline: {fileID: 1592986435}
 --- !u!212 &466231931
 SpriteRenderer:
